@@ -1,0 +1,25 @@
+### Sparrow ###
+# Compose new message: sparrow c (or compose)
+# Start application: sparrow s (or start or init)
+# Quit application: sparrow e (or end or quit, or kill or exit
+### Sparrow ###
+
+on alfred_script(q)
+	set c to {"c", "compose"}
+	set s to {"s", "start", "init"}
+	set e to {"e", "end", "quit", "kill", "exit"}
+	
+	tell application "Sparrow"
+		activate
+		if q is in s then
+			activate
+		else if q is in e then
+			quit
+		else
+			set message to make new outgoing message
+			tell message
+				compose
+			end tell
+		end if
+	end tell
+end alfred_script
